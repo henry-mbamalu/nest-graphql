@@ -5,8 +5,14 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const PORT = process.env.PORT || 4000;
   app.enableCors({
-    origin: '*',
-    methods: ["GET", "POST"],
+    origin: '*', // Allow all origins
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: [
+      'Content-Type',
+      'Authorization',
+      'x-apollo-operation-name',
+      'apollo-require-preflight',
+    ],
     credentials: true,
   });
 
