@@ -31,7 +31,7 @@ import { ChatModule } from './chat/chat.module';
       autoSchemaFile: 'schema.gql',
       playground: true,
       introspection: true,
-      csrfPrevention: false,
+      csrfPrevention: true,
     }),
     UserModule,
     ChatModule
