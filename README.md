@@ -32,6 +32,27 @@ git clone [https://github.com/manlikehenryy/nest-graphql.git](https://github.com
 
   cp example.env .env
 
+## Set env variables
+
+  ```bash
+DB_HOST = your_database_url
+```
+```bash
+DB_PORT = your_database_port
+```
+```bash
+DB_USER = your_databse_username
+```
+```bash
+DB_PASS = your_databse_password
+```
+```bash
+DB_NAME = your_databse_name
+```
+```bash
+JWT_SECRET = your_jwt_secret
+```
+
 
 ## Description
 
