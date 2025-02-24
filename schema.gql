@@ -1,0 +1,31 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: Int!
+  username: String!
+}
+
+type SignInResponse {
+  accessToken: String!
+}
+
+type Query {
+  sayHello: String!
+}
+
+type Mutation {
+  signUp(signUpInput: SignUpInput!): User!
+  signIn(signInInput: SignInInput!): SignInResponse!
+}
+
+input SignUpInput {
+  username: String!
+  password: String!
+}
+
+input SignInInput {
+  username: String!
+  password: String!
+}
