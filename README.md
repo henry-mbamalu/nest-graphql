@@ -22,6 +22,16 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+## GraphQL Url
+
+[https://nest-graphql-szdm.onrender.com/graphql](https://nest-graphql-szdm.onrender.com/graphql)
+
+## Websocket Url
+
+[wss://nest-graphql-szdm.onrender.com](wss://nest-graphql-szdm.onrender.com)
+
+
+
 ## Clone the repository
 
 git clone [https://github.com/manlikehenryy/nest-graphql.git](https://github.com/manlikehenryy/nest-graphql.git)
