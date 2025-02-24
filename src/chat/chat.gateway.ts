@@ -12,7 +12,10 @@ import { ChatService } from './chat.service';
 import { WsAuthGuard } from 'src/guards/jwt-auth.guard';
 import { UnauthorizedException, UseGuards } from '@nestjs/common';
 
-@WebSocketGateway({ cors: { origin: '*' } })
+@WebSocketGateway({ cors: {
+    origin: '*',
+    credentials: true,
+  } })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @WebSocketServer()
     server: Server;
