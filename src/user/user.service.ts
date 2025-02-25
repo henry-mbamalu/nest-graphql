@@ -1,4 +1,4 @@
-import { Injectable, ConflictException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, ConflictException, UnauthorizedException, BadRequestException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
@@ -18,6 +18,8 @@ export class UserService {
 
   async signUp(signUpInput: SignUpInput): Promise<User> {
     const { username, password } = signUpInput;
+
+    if(!username.trim().length || !password.trim().length) throw  new BadRequestException("Invalid request");
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = this.userRepository.create({ username, password: hashedPassword });
 
