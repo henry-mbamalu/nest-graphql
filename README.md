@@ -93,24 +93,24 @@ $ npm run start:prod
 
 ### Mutation
 
-mutation SignUp {
-    signUp(signUpInput: { username: "donald", password: "d12oo2" }) {
+    mutation SignUp {
+      signUp(signUpInput: { username: "donald", password: "d12oo2" }) {
         id
         username
+      }
     }
-}
 
 
 ## Signin
 
 ### Mutation
 
-mutation SignIn {
-    signIn(signInInput: { username: "donald", password: "d12oo2" }) {
+    mutation SignIn {
+      signIn(signInInput: { username: "donald", password: "d12oo2" }) {
         accessToken
         username
+      }
     }
-}
 
 # WEBSOCKET
 
