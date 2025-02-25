@@ -28,7 +28,7 @@ export class UserService {
     }
   }
 
-  async signIn(signInInput: SignInInput): Promise<{ accessToken: string }> {
+  async signIn(signInInput: SignInInput): Promise<{ accessToken: string, username: string }> {
     const { username, password } = signInInput;
     const user = await this.userRepository.findOne({ where: { username } });
 
@@ -39,6 +39,6 @@ export class UserService {
     const payload = { username: user.username, sub: user.id };
     const accessToken = this.jwtService.sign(payload);
 
-    return { accessToken };
+    return { accessToken , username: user.username};
   }
 }

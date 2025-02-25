@@ -9,6 +9,7 @@ type User {
 
 type SignInResponse {
   accessToken: String!
+  username: String!
 }
 
 type Query {
