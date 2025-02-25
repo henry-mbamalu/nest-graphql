@@ -86,3 +86,134 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+# GraphQL API
+
+## Signup
+
+### Mutation
+
+mutation SignUp {
+    signUp(signUpInput: { username: "donald", password: "d12oo2" }) {
+        id
+        username
+    }
+}
+
+
+## Signin
+
+### Mutation
+
+mutation SignIn {
+    signIn(signInInput: { username: "donald", password: "d12oo2" }) {
+        accessToken
+        username
+    }
+}
+
+# WEBSOCKET
+
+## joinRoom
+
+### Request
+
+    
+    {
+      "event": "joinRoom",
+      "data": {
+      "username": "John",
+      "room": "General"
+    }
+    }
+
+
+### Response
+
+    { "event": "message", 
+      "data": {
+        "message": "John joined the room", 
+        "username": "John"
+        } 
+    }
+
+## leaveRoom
+
+### Request
+
+    
+    {
+      "event": "leaveRoom",
+      "data": {
+      "username": "John",
+      "room": "General"
+    }
+    }
+
+
+### Response
+
+    { 
+      "event": "message", 
+      "data": {
+        "message": "John left the room", 
+        "username": "John"
+        } 
+    }
+
+
+## sendMessage
+
+### Request
+
+    
+    {
+      "event": "sendMessage",
+      "data": {
+        "sender": "John",
+        "text": "Hello, everyone!",
+        "timestamp": "2025-02-24T12:34:56Z"
+      }
+    }
+
+
+### Response
+
+    {
+      "event": "message",
+      "data": {
+      "sender": "John",
+      "text": "Hello, everyone!",
+      "timestamp": "2025-02-24T12:34:56Z",
+      "createdAt": "2025-02-24T12:34:56Z"
+    }
+    }
+
+## getMessages
+
+### Request
+
+    
+    {
+      "event": "getMessages",
+      "data": {
+        "sender": "John",
+        "text": "Hello, everyone!",
+        "timestamp": "2025-02-24T12:34:56Z"
+      }
+    }
+
+
+### Response
+
+    {
+      "event": "messages",
+      "data": [
+        {
+      "sender": "John",
+      "text": "Hello, everyone!",
+      "timestamp": "2025-02-24T12:34:56Z",
+      "createdAt": "2025-02-24T12:34:56Z"
+    }
+    ]
+    }
