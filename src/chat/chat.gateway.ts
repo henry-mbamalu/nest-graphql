@@ -41,7 +41,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         const { username, room } = data;
         const sender = client.data.user?.username;
         if (sender != username) {
-            throw new UnauthorizedException('Invalid username');
+            return
         }
 
         client.join(room);
@@ -53,7 +53,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         }
         this.usersInRooms[room].add(username);
 
-        this.server.to(room).emit('message', { event: 'message', data: { message: `${username} joined the room`, username } });
+        console.log(`${data.username} joined the ${data.room} room`)
+        this.server.to(room).emit('message', { event: 'message', data: { message: `${username} joined the room`, username, room } });
     }
 
     @UseGuards(WsAuthGuard)
@@ -62,7 +63,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         const { sender, text, timestamp } = data
         const username = client.data.user?.username;
         if (sender != username) {
-            throw new UnauthorizedException('Invalid username');
+            return
         }
 
         const room = client.data.room;
@@ -88,14 +89,14 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         const username = data?.username || client.data.username;
         const sender = client.data.user?.username;
         if (sender != username) {
-            throw new UnauthorizedException('Invalid username');
+            return
         }
         if (!room) return;
 
         client.leave(room);
         this.usersInRooms[room]?.delete(username);
-
-        this.server.to(room).emit('message', { event: 'message', data: { message: `${username} left the room`, username } });
+        console.log(`${data?.username} joined the ${data?.room} room`)
+        this.server.to(room).emit('message', { event: 'message', data: { message: `${username} left the room`, username, room } });
     }
 
     @UseGuards(WsAuthGuard)

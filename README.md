@@ -133,7 +133,8 @@ $ npm run start:prod
     { "event": "message", 
       "data": {
         "message": "John joined the room", 
-        "username": "John"
+        "username": "John",
+        "room": "General"
         } 
     }
 
@@ -157,7 +158,8 @@ $ npm run start:prod
       "event": "message", 
       "data": {
         "message": "John left the room", 
-        "username": "John"
+        "username": "John",
+        "room": "General"
         } 
     }
 
