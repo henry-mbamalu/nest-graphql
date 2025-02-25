@@ -6,6 +6,7 @@ async function bootstrap() {
   const PORT = process.env.PORT || 4000;
   const allowedOrigins = [
     "http://localhost:3000", // For local development
+    "https://next-chat-app-pi.vercel.app"
   ];
   
   app.enableCors({
