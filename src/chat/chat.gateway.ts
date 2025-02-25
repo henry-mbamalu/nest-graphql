@@ -12,10 +12,12 @@ import { ChatService } from './chat.service';
 import { WsAuthGuard } from 'src/guards/jwt-auth.guard';
 import { UnauthorizedException, UseGuards } from '@nestjs/common';
 
-@WebSocketGateway({ cors: {
-    origin: '*',
-    credentials: true,
-  } })
+@WebSocketGateway({
+    cors: {
+        origin: '*',
+        credentials: true,
+    }
+})
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @WebSocketServer()
     server: Server;
@@ -51,7 +53,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         }
         this.usersInRooms[room].add(username);
 
-        this.server.to(room).emit('message', { event: 'message', data: `${username} joined the room` });
+        this.server.to(room).emit('message', { event: 'message', data: { message: `${username} joined the room`, username } });
     }
 
     @UseGuards(WsAuthGuard)
@@ -64,7 +66,6 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         }
 
         const room = client.data.room;
-        console.log('room', room)
         if (!room) return;
 
         const message = await this.chatService.saveMessage(sender, text, room, timestamp);
@@ -75,6 +76,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
                 sender: message.sender,
                 text: message.text,
                 timestamp: message.timestamp,
+                createdAt: message.createdAt
             },
         });
     }
@@ -93,7 +95,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         client.leave(room);
         this.usersInRooms[room]?.delete(username);
 
-        this.server.to(room).emit('message', { event: 'message', data: `${username} left the room` });
+        this.server.to(room).emit('message', { event: 'message', data: { message: `${username} left the room`, username } });
     }
 
     @UseGuards(WsAuthGuard)

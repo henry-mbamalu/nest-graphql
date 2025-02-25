@@ -10,7 +10,7 @@ export class WsAuthGuard implements CanActivate {
     const client: Socket = context.switchToWs().getClient();
 
     // Get token from headers
-    const authHeader = client.handshake.headers.authorization;
+    const authHeader = client.handshake?.auth?.token || client.handshake.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       throw new UnauthorizedException('Token missing or invalid format');
     }
